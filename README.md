@@ -1,10 +1,13 @@
 Information
 ================================================================================
 
-author: Chris Laskey
-contact: chrislaskey.com
-updated: 2012.05.25
-version: 1.5.4
+Author: Chris Laskey
+
+Contact: chrislaskey.com
+
+Updated: 2012.05.25
+
+Version: 1.5.4
 
 About
 ================================================================================
@@ -129,8 +132,9 @@ Days specify when a group's list of domains will be blocked. Days can be given
 by their full names (e.g. 'Monday'), or as the wildcard '*'.
 
 The default days range is '*', meaning it is active on all days. This is a
-valid range and can be added to any group. __Note__ adding the wildcard will
-overwrite current day ranges.
+valid range and can be added to any group.
+
+__Note__ adding the wildcard will overwrite current day ranges.
 
 #### Examples
 
