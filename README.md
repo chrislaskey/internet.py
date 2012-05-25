@@ -150,9 +150,9 @@ Hours
 --------------------------------------------------------------------------------
 Hours specify when a group's list of domains will be blocked. Hours can be given
 in single units (e.g. ```8```), in a range (e.g. ```9-17```), or as the wildcard
-```'*'```.
+```*```.
 
-The default hours range is '*', meaning it is active all the time. This is a
+The default hours range is ```*```, meaning it is active all the time. This is a
 valid range and can be added to any group. __Note__ adding the wildcard will
 overwrite current hour ranges.
 
