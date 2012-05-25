@@ -1,11 +1,10 @@
 Information
 ================================================================================
 
-@author Chris Laskey
-@contact chrislaskey.com
-@contact github.com/chrislaskey
-@updated 2012.05.25
-@version 1.5.4
+author: Chris Laskey
+contact: chrislaskey.com
+updated: 2012.05.25
+version: 1.5.4
 
 About
 ================================================================================
@@ -25,31 +24,31 @@ will check the /etc/hosts file just in case the information is already there.
 
 This means a web browser request for 'google.com' can be redirected to a
 different numeric address of our choosing, instead of resolving to the actual
-address like '173.194.43.5'.
+address like ```173.194.43.5```.
 
 By choosing an unused address, we can create a 'blackhole' where the requested
 site can not be reached. By default we use an address in the local 127.0.0.*
 range, but you can modify this to whatever you like in the settings below.
 
-_Note_ modern operating systems and web browsers cache DNS entries for a short
+__Note__ modern operating systems and web browsers cache DNS entries for a short
 time in order to cut down on the number of overall DNS calls. This DNS cache
 is checked before the /etc/hosts file. This script attempts to clear all
 local DNS caches. However you may need to clear a DNS cache manually, or
 simply wait a few minutes for the DNS cache to expire.
 
-_Note_ since this file modifies /etc/hosts, it will effect all users on the
+__Note__ since this file modifies /etc/hosts, it will effect all users on the
 machine.
 
-_Why /etc/hosts?_ I'm not a big fan of cron requirements for scripts, but the
+__Why /etc/hosts?__ I'm not a big fan of cron requirements for scripts, but the
 alternative would be to pipe all traffic through a python daemon. I love
 Python, but unix based systems already do a good job networking without adding
 more cogs.
 
-_Why not /etc/resolve.conf?_ Mac OS X Darwin does not use /etc/resolve.conf
+__Why not /etc/resolve.conf?__ Mac OS X Darwin does not use /etc/resolve.conf
 in the same way Linux does. In the interests of this being cross-compatible
 I've decided to stick with /etc/hosts modification.
 
-Using the script - groups, domains, and times, oh my!
+Usage - groups, domains, and times, oh my!
 ================================================================================
 
 This script is meant to be flexible, allowing access depending on the time and
@@ -59,7 +58,7 @@ Everything is organized into 'groups'. A group contains three pieces of
 information: a list of domains; a list of hours to be active during; a list of
 days to be active on.
 
-_Remember_ this script modifies the /etc/hosts file, which requires root
+__Remember__ this script modifies the /etc/hosts file, which requires root
 privileges. Most command options require using sudo.
 
 Groups
@@ -67,13 +66,13 @@ Groups
 You can define as many groups as you want, or simply use the default group aptly
 named 'default.'
 
-Examples:
+# Examples
 
 To add a new group
-$ ./internet.py --add --group 'work'
+	$ ./internet.py --add --group 'work'
 
 Remove a group
-$ ./internet.py --remove --group 'work'
+	$ ./internet.py --remove --group 'work'
 (Warning! This removes all information. See --activate/--deactivate below.)
 
 Active List
@@ -85,16 +84,16 @@ hard work put into setting it up.
 The 'default' group is active by default, and new groups are activated by
 default as well.
 
-Examples:
+# Examples
 
 List current groups and their status
-$ ./internet.py --list
+	$ ./internet.py --list
 
 Deactivate a group
-$ ./internet.py --deactivate --group 'work'
+	$ ./internet.py --deactivate --group 'work'
 
 Activate a group
-$ ./internet.py --activate --group 'work'
+	$ ./internet.py --activate --group 'work'
 
 Domains
 --------------------------------------------------------------------------------
@@ -108,18 +107,18 @@ Also, domains should not include any trailing information. For example write
 'google.com', not 'google.com/' or 'google.com/analytics'. Subdomains
 (information to the left) are okay, like 'translate.google.com'.
 
-Examples:
+# Examples
 
 Add a domain to the default group
-$ ./internet.py --add --domain 'google.com'
+	$ ./internet.py --add --domain 'google.com'
 
 Add a domain to a custom group
-$ ./internet.py --add --domain 'google.com' --group 'work'
+	$ ./internet.py --add --domain 'google.com' --group 'work'
 
 Empty all domains in a group
-$ ./internet.py --empty domains --group 'work'
+	$ ./internet.py --empty domains --group 'work'
 
-_Notice_ This script only supports single arguments, e.g. one --domain, --hour
+__Notice__ This script only supports single arguments, e.g. one --domain, --hour
 or --day args. To add multiple domains, you must call internet.py multiple
 times
 
@@ -129,16 +128,16 @@ Days specify when a group's list of domains will be blocked. Days can be given
 by their full names (e.g. 'Monday'), or as the wildcard '*'.
 
 The default days range is '*', meaning it is active on all days. This is a
-valid range and can be added to any group. _Note_ adding the wildcard will
+valid range and can be added to any group. __Note__ adding the wildcard will
 overwrite current day ranges.
 
-Examples:
+# Examples
 
 Add one day to a group
-$ ./internet.py --add --day 'Tuesday'
+	$ ./internet.py --add --day 'Tuesday'
 
 Empty all days in a group
-$ ./internet.py --empty days --group 'work'
+	$ ./internet.py --empty days --group 'work'
 
 Hours
 --------------------------------------------------------------------------------
@@ -146,40 +145,40 @@ Hours specify when a group's list of domains will be blocked. Hours can be given
 in single units (e.g. 8), in a range (9-17), or as the wildcard '*'.
 
 The default hours range is '*', meaning it is active all the time. This is a
-valid range and can be added to any group. _Note_ adding the wildcard will
+valid range and can be added to any group. __Note__ adding the wildcard will
 overwrite current hour ranges.
 
-All hours should be given as a __24 hour__ clock. Minutes are not supported and
+All hours should be given as a ____24 hour____ clock. Minutes are not supported and
 should not be used, e.g. write '9', not '9:00' or '900'.
 
-Example:
+# Examples
 
 Add one hour to a group
-$ ./internet.py --add --hour 8
+	$ ./internet.py --add --hour 8
 
 Add an hour range to a group
-$ ./internet.py --add --hour 9-17
+	$ ./internet.py --add --hour 9-17
 
 Empty all hours in a group
-$ ./internet.py --empty hours --group 'work'
+	$ ./internet.py --empty hours --group 'work'
 
 Misc
 --------------------------------------------------------------------------------
 There are more commands and functionality than outlined here. Run the help
 command (-h/--help) for a complete list of available flags/options.
 
-Examples:
+# Examples
 
 List current groups and their status
-$ ./internet.py --list
+	$ ./internet.py --list
 
 View the hosts file before updating it
-$ ./internet.py --update --confirm
+	$ ./internet.py --update --confirm
 
 Print crontab information
-$ ./internet.py --print-crontab
+	$ ./internet.py --print-crontab
 
-_Remember_ this script modifies the /etc/hosts file, which requires root
+__Remember__ this script modifies the /etc/hosts file, which requires root
 privileges. Most command options require using sudo.
 
 Recommendations
@@ -283,22 +282,20 @@ Though I see the appeal of copy-left licensing, I've decided to release all code
 under the very permissive MIT license. The upshot is enjoy the code, modify it,
 include in proprietary software, relicense it, etc. The only things I ask are:
 
-	- Don't hold me liable for any damages resulting from using my code
-	  (e.g. if the code turns you to drinking heavily, don't charge the drinks
-	  to my tab).
+- Don't hold me liable for any damages resulting from using my code
+(e.g. if the code turns you to drinking heavily, don't charge the drinks
+to my tab).
 
-	- If you do decide to credit people and you use my code, a thank you in the
-	  same section as other third-party contributors would be great, but not
-	  required!
+- If you do decide to credit people and you use my code, a thank you in the
+same section as other third-party contributors would be great, but not
+required!
 
-	- Finally, don't use my name to promote the sale of your product without
-	  asking. It's great if you sell a product with my code in it, and I hope
-	  you are wildly successful! I just don't want my name associated with a
-	  company that acts like a jerk. So ask first. Unless your name is
-	  Larry Ellison, there's a 99.9999999%* chance I'll say yes.
-
-	  * That's the fabled nine nines. Quick catch it before it rides away on
-	  a unicorn!
+- Finally, don't use my name to promote the sale of your product without
+asking. It's great if you sell a product with my code in it, and I hope
+you are wildly successful! I just don't want my name associated with a
+company that acts like a jerk. So ask first. Unless your name is
+Larry Ellison, there's a 99.9999999%* chance I'll say yes. * That's the fabled
+nine nines. Quick catch it before it rides away on a unicorn!
 
 Finally, the code may contain third party libaries. I've done my best to adhere
 to their licensing rules and make them explicit. But please do your own due
