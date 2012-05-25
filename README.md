@@ -73,10 +73,13 @@ named 'default.'
 #### Examples
 
 To add a new group
+
 ```$ ./internet.py --add --group 'work'```
 
 Remove a group
+
 ```$ ./internet.py --remove --group 'work'```
+
 (Warning! This removes all information. See --activate/--deactivate below.)
 
 Active List
@@ -91,12 +94,15 @@ default as well.
 #### Examples
 
 List current groups and their status
+
 ```$ ./internet.py --list```
 
 Deactivate a group
+
 ```$ ./internet.py --deactivate --group 'work'```
 
 Activate a group
+
 ```$ ./internet.py --activate --group 'work'```
 
 Domains
@@ -114,12 +120,15 @@ Also, domains should not include any trailing information. For example write
 #### Examples
 
 Add a domain to the default group
+
 ```$ ./internet.py --add --domain 'google.com'```
 
 Add a domain to a custom group
+
 ```$ ./internet.py --add --domain 'google.com' --group 'work'```
 
 Empty all domains in a group
+
 ```$ ./internet.py --empty domains --group 'work'```
 
 __Notice__ This script only supports single arguments, e.g. one --domain, --hour
@@ -139,9 +148,11 @@ __Note__ adding the wildcard will overwrite current day ranges.
 #### Examples
 
 Add one day to a group
+
 ```$ ./internet.py --add --day 'Tuesday'```
 
 Empty all days in a group
+
 ```$ ./internet.py --empty days --group 'work'```
 
 Hours
@@ -159,12 +170,15 @@ should not be used, e.g. write '9', not '9:00' or '900'.
 #### Examples
 
 Add one hour to a group
+
 ```$ ./internet.py --add --hour 8```
 
 Add an hour range to a group
+
 ```$ ./internet.py --add --hour 9-17```
 
 Empty all hours in a group
+
 ```$ ./internet.py --empty hours --group 'work'```
 
 Misc
@@ -175,12 +189,15 @@ command (-h/--help) for a complete list of available flags/options.
 #### Examples
 
 List current groups and their status
+
 ```$ ./internet.py --list``
 
 View the hosts file before updating it
+
 ```$ ./internet.py --update --confirm``
 
 Print crontab information
+
 ```$ ./internet.py --print-crontab``
 
 __Remember__ this script modifies the /etc/hosts file, which requires root
