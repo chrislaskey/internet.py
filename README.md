@@ -11,24 +11,25 @@ About
 
 Internet.py is a script to limit personal web browsing.
 
-It works by modifying the /etc/hosts file. The hosts file associates numeric
-based addresses like '127.0.0.1' with named addresses like 'localhost'. Usually
-this file is only used to cache local network names, as remote computers
-accessible over the internet have numeric addresses that may, and often do,
-change.
+It works by modifying the ```/etc/hosts file```. The hosts file associates
+numeric based addresses like ```127.0.0.1``` with named addresses like
+```localhost```. Usually this file is only used to cache local network names,
+as remote computers accessible over the internet have numeric addresses that may,
+and often do, change.
 
 A web browser utilizes the Domain Name Service (DNS) to keep track of these
 dynamically changing numeric addresses. However before asking the remote DNS
-service for the numeric address of a domain like 'google.com', the computer
+service for the numeric address of a domain like ```google.com```, the computer
 will check the /etc/hosts file just in case the information is already there.
 
-This means a web browser request for 'google.com' can be redirected to a
+This means a web browser request for ```google.com``` can be redirected to a
 different numeric address of our choosing, instead of resolving to the actual
 address like ```173.194.43.5```.
 
 By choosing an unused address, we can create a 'blackhole' where the requested
-site can not be reached. By default we use an address in the local 127.0.0.*
-range, but you can modify this to whatever you like in the settings below.
+site can not be reached. By default we use an address in the local
+```127.0.0.*``` range, but you can modify this to whatever you like in the
+settings below.
 
 __Note__ modern operating systems and web browsers cache DNS entries for a short
 time in order to cut down on the number of overall DNS calls. This DNS cache
@@ -36,17 +37,17 @@ is checked before the /etc/hosts file. This script attempts to clear all
 local DNS caches. However you may need to clear a DNS cache manually, or
 simply wait a few minutes for the DNS cache to expire.
 
-__Note__ since this file modifies /etc/hosts, it will effect all users on the
-machine.
+__Note__ since this file modifies ```/etc/hosts```, it will effect all users
+on the machine.
 
-__Why /etc/hosts?__ I'm not a big fan of cron requirements for scripts, but the
-alternative would be to pipe all traffic through a python daemon. I love
-Python, but unix based systems already do a good job networking without adding
-more cogs.
+__Why ```/etc/hosts```?__ I'm not a big fan of cron requirements for scripts,
+but the alternative would be to pipe all traffic through a python daemon. I
+love Python, but unix based systems already do a good job networking without
+adding more cogs.
 
-__Why not /etc/resolve.conf?__ Mac OS X Darwin does not use /etc/resolve.conf
-in the same way Linux does. In the interests of this being cross-compatible
-I've decided to stick with /etc/hosts modification.
+__Why not ```/etc/resolve.conf```?__ Mac OS X Darwin does not use
+```/etc/resolve.conf``` in the same way Linux does. In the interests of this
+being cross-compatible I've decided to stick with ```/etc/hosts``` modification.
 
 Usage - groups, domains, and times, oh my!
 ================================================================================
@@ -58,7 +59,7 @@ Everything is organized into 'groups'. A group contains three pieces of
 information: a list of domains; a list of hours to be active during; a list of
 days to be active on.
 
-__Remember__ this script modifies the /etc/hosts file, which requires root
+__Remember__ this script modifies the ```/etc/hosts``` file, which requires root
 privileges. Most command options require using sudo.
 
 Groups
@@ -66,13 +67,13 @@ Groups
 You can define as many groups as you want, or simply use the default group aptly
 named 'default.'
 
-# Examples
+### examples
 
 To add a new group
-	$ ./internet.py --add --group 'work'
+```$ ./internet.py --add --group 'work'```
 
 Remove a group
-	$ ./internet.py --remove --group 'work'
+```$ ./internet.py --remove --group 'work'```
 (Warning! This removes all information. See --activate/--deactivate below.)
 
 Active List
@@ -84,16 +85,16 @@ hard work put into setting it up.
 The 'default' group is active by default, and new groups are activated by
 default as well.
 
-# Examples
+### examples
 
 List current groups and their status
-	$ ./internet.py --list
+```$ ./internet.py --list```
 
 Deactivate a group
-	$ ./internet.py --deactivate --group 'work'
+```$ ./internet.py --deactivate --group 'work'```
 
 Activate a group
-	$ ./internet.py --activate --group 'work'
+```$ ./internet.py --activate --group 'work'```
 
 Domains
 --------------------------------------------------------------------------------
@@ -107,16 +108,16 @@ Also, domains should not include any trailing information. For example write
 'google.com', not 'google.com/' or 'google.com/analytics'. Subdomains
 (information to the left) are okay, like 'translate.google.com'.
 
-# Examples
+### examples
 
 Add a domain to the default group
-	$ ./internet.py --add --domain 'google.com'
+```$ ./internet.py --add --domain 'google.com'```
 
 Add a domain to a custom group
-	$ ./internet.py --add --domain 'google.com' --group 'work'
+```$ ./internet.py --add --domain 'google.com' --group 'work'```
 
 Empty all domains in a group
-	$ ./internet.py --empty domains --group 'work'
+```$ ./internet.py --empty domains --group 'work'```
 
 __Notice__ This script only supports single arguments, e.g. one --domain, --hour
 or --day args. To add multiple domains, you must call internet.py multiple
@@ -131,13 +132,13 @@ The default days range is '*', meaning it is active on all days. This is a
 valid range and can be added to any group. __Note__ adding the wildcard will
 overwrite current day ranges.
 
-# Examples
+### examples
 
 Add one day to a group
-	$ ./internet.py --add --day 'Tuesday'
+```$ ./internet.py --add --day 'Tuesday'```
 
 Empty all days in a group
-	$ ./internet.py --empty days --group 'work'
+```$ ./internet.py --empty days --group 'work'```
 
 Hours
 --------------------------------------------------------------------------------
@@ -151,32 +152,32 @@ overwrite current hour ranges.
 All hours should be given as a ____24 hour____ clock. Minutes are not supported and
 should not be used, e.g. write '9', not '9:00' or '900'.
 
-# Examples
+### examples
 
 Add one hour to a group
-	$ ./internet.py --add --hour 8
+```$ ./internet.py --add --hour 8```
 
 Add an hour range to a group
-	$ ./internet.py --add --hour 9-17
+```$ ./internet.py --add --hour 9-17```
 
 Empty all hours in a group
-	$ ./internet.py --empty hours --group 'work'
+```$ ./internet.py --empty hours --group 'work'```
 
 Misc
 --------------------------------------------------------------------------------
 There are more commands and functionality than outlined here. Run the help
 command (-h/--help) for a complete list of available flags/options.
 
-# Examples
+### examples
 
 List current groups and their status
-	$ ./internet.py --list
+```$ ./internet.py --list``
 
 View the hosts file before updating it
-	$ ./internet.py --update --confirm
+```$ ./internet.py --update --confirm``
 
 Print crontab information
-	$ ./internet.py --print-crontab
+```$ ./internet.py --print-crontab``
 
 __Remember__ this script modifies the /etc/hosts file, which requires root
 privileges. Most command options require using sudo.
