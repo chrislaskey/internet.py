@@ -67,7 +67,7 @@ Groups
 You can define as many groups as you want, or simply use the default group aptly
 named 'default.'
 
-### examples
+#### Examples
 
 To add a new group
 ```$ ./internet.py --add --group 'work'```
@@ -85,7 +85,7 @@ hard work put into setting it up.
 The 'default' group is active by default, and new groups are activated by
 default as well.
 
-### examples
+#### Examples
 
 List current groups and their status
 ```$ ./internet.py --list```
@@ -108,7 +108,7 @@ Also, domains should not include any trailing information. For example write
 'google.com', not 'google.com/' or 'google.com/analytics'. Subdomains
 (information to the left) are okay, like 'translate.google.com'.
 
-### examples
+#### Examples
 
 Add a domain to the default group
 ```$ ./internet.py --add --domain 'google.com'```
@@ -132,7 +132,7 @@ The default days range is '*', meaning it is active on all days. This is a
 valid range and can be added to any group. __Note__ adding the wildcard will
 overwrite current day ranges.
 
-### examples
+#### Examples
 
 Add one day to a group
 ```$ ./internet.py --add --day 'Tuesday'```
@@ -152,7 +152,7 @@ overwrite current hour ranges.
 All hours should be given as a ____24 hour____ clock. Minutes are not supported and
 should not be used, e.g. write '9', not '9:00' or '900'.
 
-### examples
+#### Examples
 
 Add one hour to a group
 ```$ ./internet.py --add --hour 8```
@@ -168,7 +168,7 @@ Misc
 There are more commands and functionality than outlined here. Run the help
 command (-h/--help) for a complete list of available flags/options.
 
-### examples
+#### Examples
 
 List current groups and their status
 ```$ ./internet.py --list``
