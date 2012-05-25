@@ -72,15 +72,14 @@ named 'default.'
 
 #### Examples
 
-To add a new group
-
+To add a new group:
 ```$ ./internet.py --add --group 'work'```
 
-Remove a group
-
+Remove a group:
 ```$ ./internet.py --remove --group 'work'```
 
-(Warning! This removes all information. See --activate/--deactivate below.)
+__Warning!__ This removes all information. See ```--activate/--deactivate```
+below.
 
 Active List
 --------------------------------------------------------------------------------
@@ -94,15 +93,12 @@ default as well.
 #### Examples
 
 List current groups and their status
-
 ```$ ./internet.py --list```
 
-Deactivate a group
-
+Deactivate a group:
 ```$ ./internet.py --deactivate --group 'work'```
 
-Activate a group
-
+Activate a group:
 ```$ ./internet.py --activate --group 'work'```
 
 Domains
@@ -110,106 +106,96 @@ Domains
 The core of this script is the list of domains to block. Domain names should
 not include 'http://' at the beginning. The 'http://' in a browser refers to the
 method, or protocol, the browser should use to connect to a domain. The domain
-name is the part that comes after it, e.g. google.com. This is the named address
-of the remote computer, and also the only part we care about.
+name is the part that comes after it, e.g. ```google.com```. This is the named
+address of the remote computer, and also the only part we care about.
 
 Also, domains should not include any trailing information. For example write
-'google.com', not 'google.com/' or 'google.com/analytics'. Subdomains
-(information to the left) are okay, like 'translate.google.com'.
+```google.com```, not ```google.com/``` or ```google.com/analytics```.
+Subdomains (information to the left) are okay, like ```translate.google.com```.
 
 #### Examples
 
-Add a domain to the default group
-
+Add a domain to the default group:
 ```$ ./internet.py --add --domain 'google.com'```
 
-Add a domain to a custom group
-
+Add a domain to a custom group:
 ```$ ./internet.py --add --domain 'google.com' --group 'work'```
 
-Empty all domains in a group
-
+Empty all domains in a group:
 ```$ ./internet.py --empty domains --group 'work'```
 
-__Notice__ This script only supports single arguments, e.g. one --domain, --hour
-or --day args. To add multiple domains, you must call internet.py multiple
-times
+__Notice__ This script only supports single arguments, e.g. one ```--domain```,
+```--hour``` or ```--day``` args. To add multiple domains, you must call
+internet.py multiple times.
 
 Days
 --------------------------------------------------------------------------------
 Days specify when a group's list of domains will be blocked. Days can be given
-by their full names (e.g. 'Monday'), or as the wildcard '*'.
+by their full names (e.g. ```Monday```), or as the wildcard ```'*'```.
 
-The default days range is '*', meaning it is active on all days. This is a
+The default days range is ```'*'```, meaning it is active on all days. This is a
 valid range and can be added to any group.
 
 __Note__ adding the wildcard will overwrite current day ranges.
 
 #### Examples
 
-Add one day to a group
-
+Add one day to a group:
 ```$ ./internet.py --add --day 'Tuesday'```
 
-Empty all days in a group
-
+Empty all days in a group:
 ```$ ./internet.py --empty days --group 'work'```
 
 Hours
 --------------------------------------------------------------------------------
 Hours specify when a group's list of domains will be blocked. Hours can be given
-in single units (e.g. 8), in a range (9-17), or as the wildcard '*'.
+in single units (e.g. ```8```), in a range (e.g. ```9-17```), or as the wildcard
+```'*'```.
 
 The default hours range is '*', meaning it is active all the time. This is a
 valid range and can be added to any group. __Note__ adding the wildcard will
 overwrite current hour ranges.
 
-All hours should be given as a ____24 hour____ clock. Minutes are not supported and
-should not be used, e.g. write '9', not '9:00' or '900'.
+All hours should be given as a __24 hour__ clock. Minutes are not supported and
+should not be used, e.g. write ```9```, not ```9:00``` or ```900```.
 
 #### Examples
 
-Add one hour to a group
-
+Add one hour to a group:
 ```$ ./internet.py --add --hour 8```
 
-Add an hour range to a group
-
+Add an hour range to a group:
 ```$ ./internet.py --add --hour 9-17```
 
-Empty all hours in a group
-
+Empty all hours in a group:
 ```$ ./internet.py --empty hours --group 'work'```
 
 Misc
 --------------------------------------------------------------------------------
 There are more commands and functionality than outlined here. Run the help
-command (-h/--help) for a complete list of available flags/options.
+command (```-h/--help```) for a complete list of available flags/options.
 
 #### Examples
 
-List current groups and their status
-
+List current groups and their status:
 ```$ ./internet.py --list``
 
-View the hosts file before updating it
-
+View the hosts file before updating it:
 ```$ ./internet.py --update --confirm``
 
-Print crontab information
-
+Print crontab information:
 ```$ ./internet.py --print-crontab``
 
-__Remember__ this script modifies the /etc/hosts file, which requires root
+__Remember__ this script modifies the ```/etc/hosts``` file, which requires root
 privileges. Most command options require using sudo.
 
 Recommendations
 ================================================================================
 
-+ Run the script hourly via a cron job. Use the --print-crontab option for help
-on how to set this up.
++ Run the script hourly via a cron job. Use the ```--print-crontab``` option
+  for help on how to set this up.
 
-+ Make sure this script has execute permissions (see $ man chmod; for more
++ Make sure this script has execute permissions (see ```$ man chmod``` for more
 information)
 
 + Add internet.py to your PATH so it can be called/updated from any location on
@@ -258,7 +244,7 @@ Release of simple bash script version, internet.sh.
 Future Plans
 ================================================================================
 
-+ Support multiple values for fields like --domains
++ Support multiple values for fields like ```--domains```
 + Interactive menu mode
 + Move some flags to full args via ArgumentParser.add_subparsers
 + Add full 256 color set to color() function
@@ -326,4 +312,4 @@ my own code's license!
 
 For more information on the MIT license check out the Wikipedia page. The
 license below is the basic MIT plus the MIT X11 and MIT XFree86 Project clauses:
-http://en.wikipedia.org/wiki/MIT_License
+http://en.wikipedia.org/wiki/MIT_License.
