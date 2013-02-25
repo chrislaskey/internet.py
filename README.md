@@ -1,7 +1,7 @@
 About
 ================================================================================
 
-Internet.py is a script to limit personal web browsing.
+A python command line tool to help break time-wasting web browsing habits.
 
 It works by modifying the ```/etc/hosts file```. The hosts file associates
 numeric based addresses like ```127.0.0.1``` with named addresses like
